@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fares Dahoumane | متجر الحواسيب والتقنية المتطورة</title>
+    
+    <!-- استيراد خط Cairo العصري للغة العربية -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- استيراد مكتبة Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- استيراد مكتبة أيقونات Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- إعدادات Tailwind المخصصة للألوان والخطوط -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9', // الأزرق الفاتح الأساسي
+                            600: '#0284c7',
+                            700: '#0369a1',
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(14, 165, 233, 0.12)',
+                        'card': '0 4px 20px -2px rgba(15, 23, 42, 0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* تنسيقات إضافية لضمان تجربة بصرية سلسة */
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #ffffff;
+            color: #0f172a;
+        }
+        
+        /* حركة طفو ناعمة لصورة الحاسوب في القسم الرئيسي */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+        .animate-float {
+            animation: float 5s ease-in-out infinite;
+        }
+
+        /* حركة تموج ولمعان لاسم Fares Dahoumane */
+        @keyframes nameGradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes nameBounceGlow {
+            0%, 100% { transform: translateY(0) scale(1); filter: drop-shadow(0 2px 8px rgba(14, 165, 233, 0.25)); }
+            50% { transform: translateY(-4px) scale(1.03); filter: drop-shadow(0 6px 16px rgba(14, 165, 233, 0.45)); }
+        }
+        .animated-brand-name {
+            background: linear-gradient(270deg, #0284c7, #38bdf8, #0369a1, #0ea5e9);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: nameGradientFlow 4s ease infinite, nameBounceGlow 3s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        /* تخصيص شريط التمرير */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f0f9ff;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #7dd3fc;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0ea5e9;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-100 selection:text-brand-700">
+
+    <!-- شريط علوي للتواصل السريع في الجزائر -->
+    <div class="bg-gradient-to-l from-brand-600 to-brand-500 text-white text-xs sm:text-sm py-2 px-4">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2 font-bold">
+                <i data-lucide="truck" class="w-4 h-4"></i>
+                <span>توصيل سريع ومؤمّن إلى 58 ولاية في الجزائر 🇩🇿</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="tel:+213775031508" class="flex items-center gap-1.5 font-extrabold hover:text-brand-100 transition-colors" dir="ltr">
+                    <i data-lucide="phone-call" class="w-4 h-4 animate-pulse"></i>
+                    <span>+213 775 03 15 08</span>
+                </a>
+                <a href="https://wa.me/213775031508" target="_blank" class="hidden sm:inline-flex items-center gap-1 bg-white/20 hover:bg-white/30 px-2.5 py-0.5 rounded-full font-bold transition-colors">
+                    <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+                    <span>واتساب</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 1. شريط التنقل العلوي (Navbar) -->
+    <header class="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-brand-100 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- الشعار (Logo) مع الاسم المتحرك -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-brand-400 to-brand-600 flex items-center justify-center text-white shadow-lg shadow-brand-500/30 group-hover:scale-105 transition-transform">
+                        <i data-lucide="laptop" class="w-6 h-6"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xl sm:text-2xl font-black tracking-tight animated-brand-name leading-none" dir="ltr">Fares Dahoumane</span>
+                        <span class="text-xs font-semibold text-slate-400 mt-1">للإلكترونيات والحواسيب المتطورة</span>
+                    </div>
+                </a>
+
+                <!-- روابط التنقل (لشاشات الكمبيوتر) -->
+                <nav class="hidden lg:flex items-center gap-7">
+                    <a href="#home" class="text-slate-700 hover:text-brand-500 font-bold text-base transition-colors">الرئيسية</a>
+                    <a href="#products" class="text-slate-700 hover:text-brand-500 font-bold text-base transition-colors">الحواسيب</a>
+                    <a href="#payment-methods" class="text-slate-700 hover:text-brand-500 font-bold text-base transition-colors">طرق الدفع</a>
+                    <a href="#offers" class="text-slate-700 hover:text-brand-500 font-bold text-base transition-colors flex items-center gap-1.5">
+                        العروض
+                        <span class="px-2 py-0.5 text-[11px] font-extrabold bg-brand-100 text-brand-600 rounded-full">جديد</span>
+                    </a>
+                    <a href="#contact" class="text-slate-700 hover:text-brand-500 font-bold text-base transition-colors">تواصل معنا</a>
+                </nav>
+
+                <!-- أزرار التفاعل (اتصال سريع + سلة التسوق + زر القائمة للموبايل) -->
+                <div class="flex items-center gap-2.5 sm:gap-3">
+                    <a href="tel:+213775031508" class="hidden sm:flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-sm shadow-md shadow-brand-500/20 transition-all" dir="ltr">
+                        <i data-lucide="phone" class="w-4 h-4"></i>
+                        <span>+213775031508</span>
+                    </a>
+
+                    <!-- زر سلة التسوق مع العداد التفاعلي -->
+                    <button onclick="toggleCartModal()" class="relative p-3 rounded-2xl bg-brand-50 hover:bg-brand-100 text-brand-600 transition-all group border border-brand-200/60" aria-label="سلة التسوق">
+                        <i data-lucide="shopping-cart" class="w-6 h-6 group-hover:scale-110 transition-transform"></i>
+                        <span id="cart-badge" class="absolute -top-1.5 -right-1.5 w-6 h-6 rounded-full bg-brand-500 text-white text-xs font-extrabold flex items-center justify-center shadow-md ring-2 ring-white transition-transform">
+                            0
+                        </span>
+                    </button>
+
+                    <!-- زر القائمة للهواتف -->
+                    <button onclick="toggleMobileMenu()" class="lg:hidden p-3 rounded-2xl bg-slate-50 hover:bg-slate-100 text-slate-700 transition-colors" aria-label="القائمة">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- القائمة المنسدلة للهواتف -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-brand-100 px-4 pt-2 pb-6 space-y-2 shadow-lg">
+            <a href="#home" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-xl text-slate-700 hover:bg-brand-50 hover:text-brand-600 font-bold">الرئيسية</a>
+            <a href="#products" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-xl text-slate-700 hover:bg-brand-50 hover:text-brand-600 font-bold">الحواسيب والألوان</a>
+            <a href="#payment-methods" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-xl text-slate-700 hover:bg-brand-50 hover:text-brand-600 font-bold">طرق الدفع في الجزائر</a>
+            <a href="#offers" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-xl text-slate-700 hover:bg-brand-50 hover:text-brand-600 font-bold">العروض الحصرية</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-xl text-slate-700 hover:bg-brand-50 hover:text-brand-600 font-bold">تواصل معنا</a>
+            <a href="tel:+213775031508" class="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-brand-500 text-white font-extrabold" dir="ltr">
+                <i data-lucide="phone-call" class="w-4 h-4"></i>
+                <span>+213775031508</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- 2. القسم الرئيسي (Hero Section) -->
+    <section id="home" class="relative overflow-hidden bg-gradient-to-b from-white via-brand-50/70 to-brand-100/50 pt-10 pb-20 lg:pt-16 lg:pb-28">
+        <!-- عناصر زخرفية في الخلفية -->
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand-300/20 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-brand-400/20 rounded-full blur-3xl -z-10"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- النصوص وأزرار الدعوة لاتخاذ إجراء -->
+                <div class="lg:col-span-6 text-center lg:text-right space-y-6">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-brand-200 shadow-sm text-brand-600 text-sm font-bold">
+                        <span class="w-2.5 h-2.5 rounded-full bg-brand-500 animate-ping"></span>
+                        أقوى تشكيلة حواسيب بألوان عصرية في الجزائر
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-tight">
+                        قوة الأداء بين يديك مع 
+                        <span class="animated-brand-name block mt-2" dir="ltr">Fares Dahoumane</span>
+                    </h1>
+                    
+                    <p class="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        اكتشف تشكيلة واسعة من الحواسيب المحمولة والمكتبية بألوان وتصاميم متنوعة تناسب ذوقك، مع توصيل سريع لـ 58 ولاية وخيارات دفع مرنة.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#products" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-lg shadow-xl shadow-brand-500/30 hover:shadow-brand-500/40 transition-all flex items-center justify-center gap-2 group">
+                            <span>تصفح الحواسيب</span>
+                            <i data-lucide="arrow-left" class="w-5 h-5 group-hover:-translate-x-1 transition-transform"></i>
+                        </a>
+                        <a href="tel:+213775031508" class="w-full sm:w-auto px-7 py-4 rounded-2xl bg-white hover:bg-brand-50 text-brand-600 border-2 border-brand-200 font-extrabold text-lg transition-all flex items-center justify-center gap-2" dir="ltr">
+                            <i data-lucide="phone-call" class="w-5 h-5 text-brand-500"></i>
+                            <span>+213775031508</span>
+                        </a>
+                    </div>
+
+                    <!-- إحصائيات سريعة -->
+                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-brand-200/60 max-w-lg mx-auto lg:mx-0">
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-black text-brand-600">58</p>
+                            <p class="text-xs sm:text-sm font-semibold text-slate-500">ولاية توصيل</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-black text-brand-600">8 موديلات</p>
+                            <p class="text-xs sm:text-sm font-semibold text-slate-500">بألوان متعددة</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-black text-brand-600">4 طرق</p>
+                            <p class="text-xs sm:text-sm font-semibold text-slate-500">دفع آمنة بالجزائر</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- تصميم/صورة عصرية للحاسوب المحمول -->
+                <div class="lg:col-span-6 relative">
+                    <div class="relative mx-auto max-w-xl animate-float">
+                        <!-- إطار بطاقة زجاجية خلف الحاسوب -->
+                        <div class="relative rounded-3xl bg-white/80 backdrop-blur-xl p-4 sm:p-6 border border-white shadow-soft">
+                            <img 
+                                src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=1000&q=85" 
+                                alt="حاسوب محمول احترافي Fares Dahoumane" 
+                                onerror="this.src='https://placehold.co/800x550/e0f2fe/0284c7?text=Fares+Dahoumane+Pro+Laptop'"
+                                class="w-full h-auto rounded-2xl object-cover shadow-md"
+                            >
+                            
+                            <!-- شارة عائمة للمواصفات -->
+                            <div class="absolute -bottom-5 right-4 sm:right-8 bg-white px-5 py-3.5 rounded-2xl shadow-xl border border-brand-100 flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center">
+                                    <i data-lucide="cpu" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400 font-bold">معالجات الجيل الأحدث</p>
+                                    <p class="text-sm font-extrabold text-slate-800">Intel Core i9 & Ryzen 9</p>
+                                </div>
+                            </div>
+
+                            <!-- شارة عائمة للخصم -->
+                            <div class="absolute -top-4 left-4 sm:left-8 bg-gradient-to-r from-brand-500 to-brand-600 text-white px-4 py-2 rounded-2xl shadow-lg font-extrabold text-sm flex items-center gap-1.5">
+                                <i data-lucide="badge-percent" class="w-4 h-4"></i>
+                                <span>توصيل مجاني لجميع المدن</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- شريط العروض الترويجية (Offers Banner) -->
+    <section id="offers" class="py-10 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="rounded-3xl bg-gradient-to-l from-brand-500 to-brand-600 p-6 sm:p-10 text-white shadow-xl shadow-brand-500/20 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+                <div class="absolute -left-10 -bottom-10 w-48 h-48 bg-white/10 rounded-full blur-2xl"></div>
+                <div class="space-y-2 text-center md:text-right z-10">
+                    <span class="inline-block px-3 py-1 rounded-full bg-white/20 text-xs font-extrabold tracking-wide">عرض لفترة محدودة</span>
+                    <h2 class="text-2xl sm:text-3xl font-black">خصم يصل إلى 15% على باقات حواسيب الألعاب والمصممين!</h2>
+                    <p class="text-brand-100 text-sm sm:text-base">احصل على حقيبة ظهر فاخرة وماوس احترافي مجاناً عند شرائك أي لابتوب من الفئة العليا.</p>
+                </div>
+                <a href="#products" onclick="filterProducts('gaming')" class="z-10 shrink-0 px-7 py-3.5 rounded-2xl bg-white text-brand-600 hover:bg-brand-50 font-extrabold text-base shadow-lg transition-all">
+                    اكتشف عروض Gaming
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3 & 4. قسم تصفية المنتجات وشبكة البطاقات (Product Filtering & Grid) -->
+    <section id="products" class="py-16 bg-slate-50/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- عنوان القسم -->
+            <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+                <span class="text-brand-500 font-extrabold text-sm tracking-wider uppercase">تشكيلتنا المختارة بعناية</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-slate-900">مجموعة الحواسيب بألوان وتصاميم متنوعة</h2>
+                <p class="text-slate-500 text-base sm:text-lg">اختر اللون المفضل لحاسوبك وشاهد التغيير مباشرة، ثم أضفه إلى السلة أو اطلبه عبر الهاتف.</p>
+            </div>
+
+            <!-- أزرار تصفية المنتجات (Filter Tabs) -->
+            <div class="flex flex-wrap items-center justify-center gap-3 mb-12" id="filter-buttons">
+                <button onclick="filterProducts('all')" data-category="all" class="filter-btn active px-6 py-3 rounded-2xl font-bold text-sm sm:text-base transition-all bg-brand-500 text-white shadow-md shadow-brand-500/25">
+                    جميع الحواسيب (8)
+                </button>
+                <button onclick="filterProducts('gaming')" data-category="gaming" class="filter-btn px-6 py-3 rounded-2xl font-bold text-sm sm:text-base transition-all bg-white text-slate-600 hover:bg-brand-50 hover:text-brand-600 border border-slate-200">
+                    🎮 حواسيب الألعاب (Gaming)
+                </button>
+                <button onclick="filterProducts('macbook')" data-category="macbook" class="filter-btn px-6 py-3 rounded-2xl font-bold text-sm sm:text-base transition-all bg-white text-slate-600 hover:bg-brand-50 hover:text-brand-600 border border-slate-200">
+                    🍎 أجهزة MacBook
+                </button>
+                <button onclick="filterProducts('ultrabook')" data-category="ultrabook" class="filter-btn px-6 py-3 rounded-2xl font-bold text-sm sm:text-base transition-all bg-white text-slate-600 hover:bg-brand-50 hover:text-brand-600 border border-slate-200">
+                    ✨ Ultrabook خفيفة
+                </button>
+                <button onclick="filterProducts('workstation')" data-category="workstation" class="filter-btn px-6 py-3 rounded-2xl font-bold text-sm sm:text-base transition-all bg-white text-slate-600 hover:bg-brand-50 hover:text-brand-600 border border-slate-200">
+                    🖥️ محطات العمل (Workstation)
+                </button>
+            </div>
+
+            <!-- شبكة بطاقات المنتجات (Product Grid) -->
+            <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7">
+                <!-- يتم توليد البطاقات ديناميكياً عبر JavaScript -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- قسم طرق الدفع المعتمدة في الجزائر (Payment Methods in Algeria) -->
+    <section id="payment-methods" class="py-20 bg-gradient-to-b from-white to-brand-50/60 border-t border-brand-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+                <span class="px-4 py-1.5 rounded-full bg-brand-100 text-brand-700 font-extrabold text-sm">مرونة وأمان تام في المعاملات 🇩🇿</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-slate-900">طرق الدفع المتوفرة في الجزائر</h2>
+                <p class="text-slate-600 text-base sm:text-lg">نوفر لك في متجر <span class="font-bold text-brand-600" dir="ltr">Fares Dahoumane</span> جميع وسائل الدفع المريحة والموثوقة لتسهيل عملية شرائك.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- 1. الدفع عند الاستلام -->
+                <div class="bg-white p-7 rounded-3xl border-2 border-brand-100 hover:border-brand-400 shadow-card hover:shadow-soft transition-all text-center group">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                        <i data-lucide="banknote" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-slate-900 mb-2">الدفع عند الاستلام</h3>
+                    <span class="inline-block px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-extrabold mb-3">Cash on Delivery</span>
+                    <p class="text-slate-500 text-sm leading-relaxed">اطلب حاسوبك الآن وادفع نقداً عند استلامه ومعاينته أمام باب منزلك في 58 ولاية.</p>
+                </div>
+
+                <!-- 2. البطاقة الذهبية -->
+                <div class="bg-white p-7 rounded-3xl border-2 border-brand-100 hover:border-amber-400 shadow-card hover:shadow-soft transition-all text-center group">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-amber-50 text-amber-500 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                        <i data-lucide="credit-card" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-slate-900 mb-2">البطاقة الذهبية</h3>
+                    <span class="inline-block px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-extrabold mb-3">Edahabia - بريد الجزائر</span>
+                    <p class="text-slate-500 text-sm leading-relaxed">ادفع بكل سهولة وأمان باستعمال البطاقة الذهبية لبريد الجزائر عبر الدفع الإلكتروني السريع.</p>
+                </div>
+
+                <!-- 3. بطاقة CIB -->
+                <div class="bg-white p-7 rounded-3xl border-2 border-brand-100 hover:border-brand-400 shadow-card hover:shadow-soft transition-all text-center group">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                        <i data-lucide="landmark" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-slate-900 mb-2">البطاقة البنكية CIB</h3>
+                    <span class="inline-block px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-extrabold mb-3">Carte Interbancaire</span>
+                    <p class="text-slate-500 text-sm leading-relaxed">نقبل الدفع عبر جميع البطاقات البنكية الجزائرية (CIB) بتشفير وحماية عالية.</p>
+                </div>
+
+                <!-- 4. بريدي موب BaridiMob -->
+                <div class="bg-white p-7 rounded-3xl border-2 border-brand-100 hover:border-sky-400 shadow-card hover:shadow-soft transition-all text-center group">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                        <i data-lucide="smartphone" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-slate-900 mb-2">تطبيق بريدي موب</h3>
+                    <span class="inline-block px-3 py-1 rounded-full bg-sky-50 text-sky-700 text-xs font-extrabold mb-3">BaridiMob / CCP</span>
+                    <p class="text-slate-500 text-sm leading-relaxed">تحويل فوري ومباشر من هاتفك عبر تطبيق BaridiMob أو عبر الحساب البريدي الجاري CCP.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. قسم المميزات (لماذا تختار Fares Dahoumane؟) -->
+    <section id="features" class="py-20 bg-white border-t border-brand-100/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+                <span class="px-4 py-1.5 rounded-full bg-brand-50 text-brand-600 font-bold text-sm">ثقة وجودة لا تضاهى</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-slate-900">لماذا تختار متجر <span class="text-brand-500" dir="ltr">Fares Dahoumane</span>؟</h2>
+                <p class="text-slate-500 text-base">نحن لا نبيع الأجهزة فحسب، بل نقدم تجربة متكاملة تضمن لك راحة البال وأعلى مستويات الأداء.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- ميزة 1 -->
+                <div class="p-8 rounded-3xl bg-gradient-to-b from-brand-50/70 to-white border border-brand-100 hover:border-brand-300 hover:shadow-soft transition-all group">
+                    <div class="w-16 h-16 rounded-2xl bg-brand-500 text-white flex items-center justify-center mb-6 shadow-lg shadow-brand-500/30 group-hover:scale-110 transition-transform">
+                        <i data-lucide="shield-check" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-slate-900 mb-3">ضمان شامل ومعتمد</h3>
+                    <p class="text-slate-600 leading-relaxed">جميع أجهزتنا جديدة وأصلية 100% ومشمولة بضمان حقيقي يصل إلى سنتين ضد عيوب التصنيع مع صيانة سريعة.</p>
+                </div>
+
+                <!-- ميزة 2 -->
+                <div class="p-8 rounded-3xl bg-gradient-to-b from-brand-50/70 to-white border border-brand-100 hover:border-brand-300 hover:shadow-soft transition-all group">
+                    <div class="w-16 h-16 rounded-2xl bg-brand-500 text-white flex items-center justify-center mb-6 shadow-lg shadow-brand-500/30 group-hover:scale-110 transition-transform">
+                        <i data-lucide="truck" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-slate-900 mb-3">توصيل سريع وآمن لباب منزلك</h3>
+                    <p class="text-slate-600 leading-relaxed">خدمة شحن مؤمّنة بالكامل وتوصيل سريع خلال 24 إلى 48 ساعة مع إمكانية المعاينة والدفع عند الاستلام.</p>
+                </div>
+
+                <!-- ميزة 3 -->
+                <div class="p-8 rounded-3xl bg-gradient-to-b from-brand-50/70 to-white border border-brand-100 hover:border-brand-300 hover:shadow-soft transition-all group">
+                    <div class="w-16 h-16 rounded-2xl bg-brand-500 text-white flex items-center justify-center mb-6 shadow-lg shadow-brand-500/30 group-hover:scale-110 transition-transform">
+                        <i data-lucide="headphones" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-slate-900 mb-3">دعم فني واستشارات مجانية</h3>
+                    <p class="text-slate-600 leading-relaxed">فريق من الخبراء التقنيين جاهز لمساعدتك في اختيار الحاسوب الأنسب لميزانيتك وعملك وتثبيت البرامج الأساسية مجاناً.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. تذييل الصفحة (Footer) -->
+    <footer id="contact" class="bg-slate-900 text-slate-300 pt-16 pb-8 border-t-4 border-brand-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-slate-800">
+                
+                <!-- نبذة عن المتجر -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-brand-500 flex items-center justify-center text-white">
+                            <i data-lucide="laptop" class="w-6 h-6"></i>
+                        </div>
+                        <span class="text-2xl font-extrabold text-white" dir="ltr">Fares Dahoumane</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        وجهتك الأولى لأحدث أجهزة اللابتوب، حواسيب الألعاب، محطات العمل الهندسية، والملحقات التقنية الأصلية بأفضل الأسعار.
+                    </p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <a href="#" class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-brand-500 text-white flex items-center justify-center transition-colors" aria-label="فيسبوك">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-brand-500 text-white flex items-center justify-center transition-colors" aria-label="إنستغرام">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-brand-500 text-white flex items-center justify-center transition-colors" aria-label="تويتر">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- روابط سريعة -->
+                <div>
+                    <h4 class="text-white font-extrabold text-lg mb-4">روابط سريعة</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#home" class="hover:text-brand-400 transition-colors">الرئيسية</a></li>
+                        <li><a href="#products" class="hover:text-brand-400 transition-colors">جميع المنتجات</a></li>
+                        <li><a href="#offers" class="hover:text-brand-400 transition-colors">العروض والتخفيضات</a></li>
+                        <li><a href="#features" class="hover:text-brand-400 transition-colors">مميزات المتجر</a></li>
+                    </ul>
+                </div>
+
+                <!-- الأقسام -->
+                <div>
+                    <h4 class="text-white font-extrabold text-lg mb-4">أقسام المتجر</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#products" onclick="filterProducts('gaming')" class="hover:text-brand-400 transition-colors">حواسيب الألعاب (Gaming)</a></li>
+                        <li><a href="#products" onclick="filterProducts('macbook')" class="hover:text-brand-400 transition-colors">أجهزة MacBook</a></li>
+                        <li><a href="#products" onclick="filterProducts('ultrabook')" class="hover:text-brand-400 transition-colors">حواسيب Ultrabook</a></li>
+                        <li><a href="#products" onclick="filterProducts('workstation')" class="hover:text-brand-400 transition-colors">محطات العمل Workstation</a></li>
+                        <li><a href="#payment-methods" class="hover:text-brand-400 transition-colors">طرق الدفع في الجزائر</a></li>
+                    </ul>
+                </div>
+
+                <!-- معلومات التواصل -->
+                <div>
+                    <h4 class="text-white font-extrabold text-lg mb-4">تواصل معنا</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-brand-400 shrink-0 mt-0.5"></i>
+                            <span>الجزائر - التوصيل متوفر لجميع الولايات (58 ولاية)</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="phone" class="w-5 h-5 text-brand-400 shrink-0"></i>
+                            <a href="tel:+213775031508" class="hover:text-brand-400 font-bold transition-colors" dir="ltr">+213775031508</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="message-circle" class="w-5 h-5 text-emerald-400 shrink-0"></i>
+                            <a href="https://wa.me/213775031508" target="_blank" class="hover:text-emerald-400 font-bold transition-colors" dir="ltr">WhatsApp: +213775031508</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="mail" class="w-5 h-5 text-brand-400 shrink-0"></i>
+                            <span dir="ltr">contact@faresdahoumane.dz</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+    <!-- نافذة معاينة تفاصيل الحاسوب وصوره (Product Details Modal) -->
+    <div id="product-details-modal" class="fixed inset-0 z-50 hidden" aria-modal="true">
+        <div onclick="closeProductModal()" class="fixed inset-0 bg-slate-900/65 backdrop-blur-sm transition-opacity"></div>
+        <div class="fixed inset-0 flex items-center justify-center p-4 pointer-events-none">
+            <div id="product-details-content" class="bg-white rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl border border-brand-100 pointer-events-auto transform transition-all max-h-[90vh] overflow-y-auto">
+                <!-- يتم تعبئتها ديناميكياً -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. النافذة المنبثقة لسلة التسوق (Cart Modal) -->
+    <div id="cart-modal" class="fixed inset-0 z-50 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <!-- الخلفية المعتمة -->
+        <div onclick="toggleCartModal()" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity"></div>
+
+        <!-- محتوى النافذة -->
+        <div class="fixed inset-y-0 left-0 max-w-full flex">
+            <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col justify-between h-full">
+                
+                <!-- رأس النافذة -->
+                <div class="px-6 py-5 bg-brand-50 border-b border-brand-100 flex items-center justify-between">
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-10 h-10 rounded-xl bg-brand-500 text-white flex items-center justify-center">
+                            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-black text-slate-900" id="modal-title">سلة المشتريات</h3>
+                            <p class="text-xs text-slate-500 font-semibold" id="cart-items-count-text">0 منتجات في السلة</p>
+                        </div>
+                    </div>
+                    <button onclick="toggleCartModal()" class="p-2 rounded-xl bg-white text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+
+                <!-- قائمة المنتجات داخل السلة -->
+                <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4">
+                    <!-- يتم تعبئة العناصر عبر JavaScript -->
+                </div>
+
+                <!-- ملخص الطلب وزر الإتمام -->
+                <div id="cart-footer" class="p-6 bg-slate-50 border-t border-slate-200 space-y-4">
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between text-slate-500">
+                            <span>المجموع الفرعي:</span>
+                            <span id="cart-subtotal" class="font-bold text-slate-800">0 د.ج</span>
+                        </div>
+                        <div class="flex justify-between text-slate-500">
+                            <span>التوصيل (58 ولاية):</span>
+                            <span class="font-bold text-emerald-600">مجاني</span>
+                        </div>
+                        <div class="flex justify-between text-lg font-black text-slate-900 pt-2 border-t border-slate-200">
+                            <span>الإجمالي النهائي:</span>
+                            <span id="cart-total" class="text-brand-600">0 د.ج</span>
+                        </div>
+                    </div>
+
+                    <!-- نموذج سريع لإتمام الطلب مع اختيار طريقة الدفع في الجزائر -->
+                    <form id="checkout-form" onsubmit="handleCheckout(event)" class="space-y-3 pt-2">
+                        <input type="text" id="customer-name" required placeholder="الاسم واللقب الكامل" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none text-sm bg-white">
+                        <input type="tel" id="customer-phone" required placeholder="رقم الهاتف (مثال: 0775031508)" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none text-sm bg-white text-right">
+                        <input type="text" id="customer-city" required placeholder="الولاية والبلدية" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none text-sm bg-white">
+                        
+                        <div>
+                            <label for="payment-method-select" class="block text-xs font-extrabold text-slate-600 mb-1">اختر طريقة الدفع في الجزائر:</label>
+                            <select id="payment-method-select" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none text-sm bg-white font-bold text-slate-700">
+                                <option value="الدفع عند الاستلام (Cash on Delivery)">💵 الدفع عند الاستلام (Cash on Delivery)</option>
+                                <option value="البطاقة الذهبية (Edahabia)">💳 البطاقة الذهبية (Edahabia - بريد الجزائر)</option>
+                                <option value="البطاقة البنكية (CIB)">🏦 البطاقة البنكية (CIB)</option>
+                                <option value="تطبيق بريدي موب (BaridiMob)">📱 تحويل بريدي موب (BaridiMob / CCP)</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" id="checkout-btn" class="w-full py-3.5 px-6 rounded-2xl bg-brand-500 hover:bg-brand-600 text-white font-extrabold text-base shadow-lg shadow-brand-500/30 transition-all flex items-center justify-center gap-2">
+                            <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+                            <span>تأكيد الطلب الآن</span>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- إشعار منبثق (Toast Notification) -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 border border-slate-700">
+            <div class="w-8 h-8 rounded-xl bg-brand-500 flex items-center justify-center shrink-0">
+                <i data-lucide="check" class="w-5 h-5 text-white"></i>
+            </div>
+            <p id="toast-message" class="text-sm font-bold">تمت إضافة المنتج إلى السلة بنجاح!</p>
+        </div>
+    </div>
+
+    <!-- البرمجة التفاعلية للموقع (JavaScript) -->
+    <script>
+        // دالة توليد صورة بديلة احترافية مضمونة في حال تعذر تحميل أي رابط صورة
+        function getFallbackImage(title, colorHex) {
+            const bg = (colorHex || '#e0f2fe').replace('#', '');
+            return `https://placehold.co/800x600/${bg}/ffffff?text=${encodeURIComponent(title)}`;
+        }
+
+        // قاعدة بيانات 8 حواسيب متنوعة بألوان وصور حقيقية عالية الدقة من Unsplash
+        const productsData = [
+            {
+                id: 1,
+                name: "ASUS ROG Strix G16",
+                category: "gaming",
+                categoryLabel: "Gaming ألعاب",
+                price: 245000,
+                oldPrice: 268000,
+                badge: "الأكثر مبيعاً",
+                selectedColorIndex: 0,
+                variants: [
+                    {
+                        colorName: "أسود ليلي",
+                        hex: "#0f172a",
+                        image: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=800&q=80"
+                    },
+                    {
+                        colorName: "رمادي معدني",
+                        hex: "#64748b",
+                        image: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=800&q=80"
+                    },
+                    {
+                        colorName: "أزرق نيون",
+                        hex: "#0284c7",
+                        image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80"
+                    }
+                ],
+                specs: ["Intel Core i9-14900HX", "RTX 4070 8GB GDDR6", "32GB DDR5 / 1TB NVMe"]
+            },
+            {
+                id: 2,
+                name: "MacBook Pro 14 M3 Pro",
+                category: "macbook",
+                categoryLabel: "MacBook",
+                price: 315000,
+                oldPrice: null,
+                badge: "احترافي",
+                selectedColorIndex: 0,
+                variants: [
+                    {
+                        colorName: "فضي كلاسيكي",
+                        hex: "#cbd5e1",
+                        image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
+                    },
+                    {
+                        colorName: "أسود فلكي",
+                        hex: "#1e293b",
+                        image: "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&w=800&q=80"
+                    }
+                ],
+                specs: ["شريحة Apple M3 Pro", "شاشة Liquid Retina XDR", "18GB RAM / 512GB SSD"]
+            },
+            {
+                id: 3,
+                name: "Dell XPS 15 OLED",
+                category: "ultrabook",
+                categoryLabel: "Ultrabook",
+                price: 218000,
+                oldPrice: 235000,
+                badge: "خصم خاص",
+                selectedColorIndex: 0,
+                variants: [
+                    {
+                        colorName: "أبيض ثلجي",
+                        hex: "#f8fafc",
+                        image: "https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?auto=format&fit=crop&w=800&q=80"
+                    },
+                    {
+                        colorName: "فضي بلاتيني",
+                        hex: "#94a3b8",
+                        image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=800&q=80"
+                    }
+                ],
+                specs: ["Intel Core Ultra 7", "شاشة 3.5K OLED لمس", "16GB RAM / 1TB SSD"]
+            },
+            {
+                id: 4,
+                name: "PC Workstation Titan RGB",
+                category: "workstation",
+                categoryLabel: "Workstation",
+                price: 279000,
+                oldPrice: 299000,
+                badge: "أداء خارق",
+                selectedColorIndex: 0,
+                variants: [
+                    {
+                        colorName: "أبيض + أزرق",
+                        hex: "#38bdf8",
+                        image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=800&q=80"
+                    },
+                    {
+                        colorName: "أسود كربوني",
+                        hex: "#090d16",
+                        image: "https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=800&q=80"
+                    }
+                ],
+                specs: ["AMD Ryzen 9 7900X", "NVIDIA RTX 4080 Super", "تبريد مائي + 64GB DDR5"]
+            },
+            {
+                id: 5,
+                name: "MacBook Air 15 M3",
+                category: "macbook",
+                categoryLabel: "MacBook",
+                price: 229000,
+                oldPrice: 245000,
+                badge: "خفيف وأنيق",
+                selectedColorIndex: 0,
+                variants: [
+                    {
+                        colorName: "أزرق سماء الليل",
+                        hex: "#1e3a8a",
+                        image: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=800&q=80"
+                    },
+                    {
+                        colorName: "فضي نجمي",
+                        hex: "#e2e8f0",
+                        image: "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?auto=format&fit=crop&w=800&q=80"
+                    }
+                ],
+                specs: ["شريحة Apple M3", "شاشة 15.3 بوصة Retina", "16GB RAM / 512GB SSD"]
+            },
+            {
+                id: 6,
+                name: "MSI Raider GE78 HX",
+                category: "gaming",
+                categoryLabel: "Gaming ألعاب",
+                price: 340000,
+                oldPrice: 365000,
+                badge: "وحش الألعاب",
+                selectedColorIndex: 0,
+                variants: [
+                    {
+                        colorName: "أسود تيتانيوم",
+                        hex: "#111827",
+                        image: "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=800&q=80"
+                    },
+                    {
+                        colorName: "رمادي داكن",
+                        hex: "#475569",
+                        image: "https://images.unsplash.com/photo-1625842268584-8f3296236761?auto=format&fit=crop&w=800&q=80"
+                    }
+                ],
+                specs: ["Intel Core i9-14900HX", "RTX 4080 12GB GDDR6", "32GB DDR5 / 2TB NVMe"]
+            },
+            {
+                id: 7,
+                name: "HP Spectre x360 14",
+                category: "ultrabook",
+                categoryLabel: "Ultrabook",
+                price: 195000,
+                oldPrice: null,
+                badge: "قابل للطي 360°",
+                selectedColorIndex: 0,
+                variants: [
+                    {
+                        colorName: "أزرق ملكي",
+                        hex: "#0369a1",
+                        image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=800&q=80"
+                    },
+                    {
+                        colorName: "فضي طبيعي",
+                        hex: "#cbd5e1",
+                        image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=800&q=80"
+                    },
+                    {
+                        colorName: "أبيض لؤلؤي",
+                        hex: "#f1f5f9",
+                        image: "https://images.unsplash.com/photo-1544731612-de7f96afe55f?auto=format&fit=crop&w=800&q=80"
+                    }
+                ],
+                specs: ["Intel Core Ultra 7", "قلم ذكي + شاشة OLED", "16GB RAM / 1TB NVMe"]
+            },
+            {
+                id: 8,
+                name: "Lenovo ThinkPad P16 Gen 2",
+                category: "workstation",
+                categoryLabel: "Workstation",
+                price: 289000,
+                oldPrice: 310000,
+                badge: "للمهندسين والمصممين",
+                selectedColorIndex: 0,
+                variants: [
+                    {
+                        colorName: "رمادي عاصف",
+                        hex: "#334155",
+                        image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=800&q=80"
+                    },
+                    {
+                        colorName: "أسود احترافي",
+                        hex: "#0f172a",
+                        image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80"
+                    }
+                ],
+                specs: ["Intel Core i9 vPro", "NVIDIA RTX 3500 Ada", "64GB ECC RAM / 2TB SSD"]
+            }
+        ];
+
+        // حالة سلة التسوق
+        let cart = [];
+        let currentFilter = 'all';
+
+        // تهيئة الصفحة عند التحميل
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts('all');
+            updateCartUI();
+            lucide.createIcons();
+        });
+
+        // تغيير لون الحاسوب في البطاقة وتحديث الصورة فوراً وبسلاسة
+        function selectProductColor(productId, variantIndex, isFromModal = false) {
+            const product = productsData.find(p => p.id === productId);
+            if (!product) return;
+            product.selectedColorIndex = variantIndex;
+            
+            const activeVariant = product.variants[variantIndex];
+            const cardImg = document.getElementById(`product-img-${productId}`);
+            const cardColorLabel = document.getElementById(`product-color-label-${productId}`);
+            
+            if (cardImg) {
+                cardImg.style.opacity = '0.4';
+                setTimeout(() => {
+                    cardImg.src = activeVariant.image;
+                    cardImg.style.opacity = '1';
+                }, 120);
+            }
+            if (cardColorLabel) {
+                cardColorLabel.textContent = activeVariant.colorName;
+            }
+            
+            // تحديث حدود دوائر الألوان في البطاقة
+            product.variants.forEach((_, idx) => {
+                const btn = document.getElementById(`color-btn-${productId}-${idx}`);
+                if (btn) {
+                    if (idx === variantIndex) {
+                        btn.className = 'w-6 h-6 rounded-full border-2 transition-transform border-brand-500 scale-110 ring-2 ring-brand-200';
+                    } else {
+                        btn.className = 'w-6 h-6 rounded-full border-2 transition-transform border-slate-300 hover:scale-105';
+                    }
+                }
+            });
+
+            if (isFromModal) {
+                openProductModal(productId);
+            }
+        }
+
+        // فتح نافذة معاينة تفاصيل الحاسوب وصوره
+        function openProductModal(productId) {
+            const product = productsData.find(p => p.id === productId);
+            if (!product) return;
+            const activeVariant = product.variants[product.selectedColorIndex || 0];
+            const modal = document.getElementById('product-details-modal');
+            const content = document.getElementById('product-details-content');
+
+            content.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                    <div class="relative bg-brand-50 h-72 md:h-full min-h-[280px]">
+                        <img 
+                            src="${activeVariant.image}" 
+                            alt="${product.name} - ${activeVariant.colorName}" 
+                            onerror="this.onerror=null;this.src='${getFallbackImage(product.name, activeVariant.hex)}'"
+                            class="w-full h-full object-cover transition-opacity duration-300"
+                        >
+                        <button onclick="closeProductModal()" class="md:hidden absolute top-4 left-4 w-10 h-10 rounded-full bg-white/90 text-slate-800 flex items-center justify-center shadow-md">
+                            <i data-lucide="x" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                    <div class="p-6 sm:p-8 flex flex-col justify-between space-y-5">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <span class="px-3 py-1 rounded-xl bg-brand-100 text-brand-700 text-xs font-extrabold">${product.categoryLabel}</span>
+                                <button onclick="closeProductModal()" class="hidden md:flex w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 items-center justify-center transition-colors">
+                                    <i data-lucide="x" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                            <h3 class="text-2xl font-black text-slate-900 mb-3" dir="ltr">${product.name}</h3>
+                            
+                            <!-- اختيار اللون داخل النافذة -->
+                            <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200/80 mb-4">
+                                <p class="text-xs font-bold text-slate-500 mb-2">اللون المختار: <span class="text-brand-600 font-extrabold">${activeVariant.colorName}</span></p>
+                                <div class="flex items-center gap-2.5">
+                                    ${product.variants.map((v, idx) => `
+                                        <button 
+                                            type="button"
+                                            onclick="selectProductColor(${product.id}, ${idx}, true)"
+                                            style="background-color: ${v.hex};"
+                                            class="w-7 h-7 rounded-full border-2 transition-transform ${idx === product.selectedColorIndex ? 'border-brand-500 scale-110 ring-2 ring-brand-200' : 'border-slate-300 hover:scale-105'}"
+                                            title="${v.colorName}"
+                                        ></button>
+                                    `).join('')}
+                                </div>
+                            </div>
+
+                            <h4 class="text-sm font-extrabold text-slate-800 mb-2">المواصفات التقنية:</h4>
+                            <ul class="space-y-2 mb-4">
+                                ${product.specs.map(s => `
+                                    <li class="flex items-center gap-2 text-sm text-slate-600 font-semibold">
+                                        <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-500 shrink-0"></i>
+                                        <span>${s}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-100 space-y-3">
+                            <div class="flex items-baseline justify-between">
+                                <span class="text-sm font-bold text-slate-500">السعر الإجمالي:</span>
+                                <div class="text-left">
+                                    ${product.oldPrice ? `<span class="text-xs text-slate-400 line-through ml-2">${product.oldPrice.toLocaleString()} د.ج</span>` : ''}
+                                    <span class="text-2xl font-black text-brand-600">${product.price.toLocaleString()} د.ج</span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2.5">
+                                <button onclick="addToCart(${product.id}); closeProductModal();" class="col-span-2 py-3.5 px-5 rounded-2xl bg-brand-500 hover:bg-brand-600 text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-lg shadow-brand-500/25 transition-all">
+                                    <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                                    <span>أضف إلى السلة بهذا اللون</span>
+                                </button>
+                                <a href="tel:+213775031508" class="py-2.5 px-3 rounded-xl bg-brand-50 hover:bg-brand-100 text-brand-700 text-xs font-extrabold flex items-center justify-center gap-1.5">
+                                    <i data-lucide="phone" class="w-4 h-4"></i>
+                                    <span>اتصال مباشر</span>
+                                </a>
+                                <a href="https://wa.me/213775031508?text=${encodeURIComponent('مرحباً Fares Dahoumane، أريد طلب حاسوب: ' + product.name + ' - اللون: ' + activeVariant.colorName)}" target="_blank" class="py-2.5 px-3 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-xs font-extrabold flex items-center justify-center gap-1.5">
+                                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                                    <span>طلب عبر واتساب</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            modal.classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function closeProductModal() {
+            document.getElementById('product-details-modal').classList.add('hidden');
+        }
+
+        // دالة عرض المنتجات حسب الفئة المختارة
+        function renderProducts(category) {
+            const grid = document.getElementById('products-grid');
+            const filtered = category === 'all' 
+                ? productsData 
+                : productsData.filter(item => item.category === category);
+
+            grid.innerHTML = filtered.map(product => {
+                const activeVariant = product.variants[product.selectedColorIndex || 0];
+                return `
+                <div class="bg-white rounded-3xl border border-slate-100 shadow-card hover:shadow-soft hover:border-brand-200 transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+                    <div>
+                        <!-- صورة المنتج مع الشارة وزر المعاينة -->
+                        <div onclick="openProductModal(${product.id})" class="relative h-52 overflow-hidden bg-brand-50 cursor-pointer">
+                            <img 
+                                id="product-img-${product.id}"
+                                src="${activeVariant.image}" 
+                                alt="${product.name} - ${activeVariant.colorName}" 
+                                onerror="this.onerror=null;this.src='${getFallbackImage(product.name, activeVariant.hex)}'"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
+                            >
+                            <span class="absolute top-3 right-3 px-3 py-1 rounded-xl bg-white/95 backdrop-blur-sm text-brand-600 text-xs font-extrabold shadow-sm">
+                                ${product.categoryLabel}
+                            </span>
+                            ${product.badge ? `
+                                <span class="absolute top-3 left-3 px-3 py-1 rounded-xl bg-brand-500 text-white text-xs font-extrabold shadow-sm">
+                                    ${product.badge}
+                                </span>
+                            ` : ''}
+                            <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-xl bg-slate-900/75 text-white text-[11px] font-bold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                                <span>معاينة</span>
+                            </span>
+                        </div>
+
+                        <!-- تفاصيل المنتج واختيار اللون -->
+                        <div class="p-5 pb-3">
+                            <h3 onclick="openProductModal(${product.id})" class="text-lg font-extrabold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors cursor-pointer truncate" dir="ltr">
+                                ${product.name}
+                            </h3>
+
+                            <!-- شريط اختيار الألوان -->
+                            <div class="mb-3.5 p-2.5 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-between gap-2">
+                                <span id="product-color-label-${product.id}" class="text-xs font-bold text-slate-600 truncate">${activeVariant.colorName}</span>
+                                <div class="flex items-center gap-1.5 shrink-0">
+                                    ${product.variants.map((variant, idx) => `
+                                        <button 
+                                            id="color-btn-${product.id}-${idx}"
+                                            type="button"
+                                            onclick="selectProductColor(${product.id}, ${idx})"
+                                            title="${variant.colorName}"
+                                            style="background-color: ${variant.hex};"
+                                            class="w-6 h-6 rounded-full border-2 transition-transform ${idx === product.selectedColorIndex ? 'border-brand-500 scale-110 ring-2 ring-brand-200' : 'border-slate-300 hover:scale-105'}"
+                                            aria-label="اختيار اللون ${variant.colorName}"
+                                        ></button>
+                                    `).join('')}
+                                </div>
+                            </div>
+                            
+                            <!-- المواصفات الأساسية -->
+                            <ul class="space-y-1.5 mb-2">
+                                ${product.specs.map(spec => `
+                                    <li class="flex items-center gap-2 text-xs text-slate-600 font-medium">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-brand-400 shrink-0"></span>
+                                        <span class="truncate">${spec}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- السعر وزر الإضافة للسلة والاتصال السريع -->
+                    <div class="px-5 pb-5 pt-3 border-t border-slate-100 space-y-2.5">
+                        <div class="flex items-center justify-between gap-2">
+                            <div>
+                                ${product.oldPrice ? `<p class="text-[11px] text-slate-400 line-through font-semibold">${product.oldPrice.toLocaleString()} د.ج</p>` : ''}
+                                <p class="text-lg font-black text-brand-600">${product.price.toLocaleString()} <span class="text-xs font-bold text-slate-500">د.ج</span></p>
+                            </div>
+
+                            <button onclick="addToCart(${product.id})" class="px-3.5 py-2.5 rounded-2xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs transition-all flex items-center gap-1.5 shadow-sm hover:shadow-md hover:shadow-brand-500/25 active:scale-95">
+                                <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                                <span>أضف للسلة</span>
+                            </button>
+                        </div>
+
+                        <!-- طلب سريع بالهاتف أو واتساب -->
+                        <div class="flex items-center gap-2 pt-1">
+                            <a href="tel:+213775031508" class="flex-1 py-2 px-2.5 rounded-xl bg-brand-50 hover:bg-brand-100 text-brand-700 text-[11px] font-extrabold flex items-center justify-center gap-1 transition-colors">
+                                <i data-lucide="phone" class="w-3.5 h-3.5"></i>
+                                <span>اتصال</span>
+                            </a>
+                            <a href="https://wa.me/213775031508?text=${encodeURIComponent('مرحباً Fares Dahoumane، أود الاستفسار عن حاسوب: ' + product.name + ' - اللون: ' + activeVariant.colorName)}" target="_blank" class="flex-1 py-2 px-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-[11px] font-extrabold flex items-center justify-center gap-1 transition-colors">
+                                <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+                                <span>واتساب</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `}).join('');
+
+            lucide.createIcons();
+        }
+
+        // دالة تصفية المنتجات وتحديث مظهر الأزرار
+        function filterProducts(category) {
+            currentFilter = category;
+            renderProducts(category);
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.dataset.category === category) {
+                    btn.className = 'filter-btn active px-6 py-3 rounded-2xl font-bold text-sm sm:text-base transition-all bg-brand-500 text-white shadow-md shadow-brand-500/25';
+                } else {
+                    btn.className = 'filter-btn px-6 py-3 rounded-2xl font-bold text-sm sm:text-base transition-all bg-white text-slate-600 hover:bg-brand-50 hover:text-brand-600 border border-slate-200';
+                }
+            });
+        }
+
+        // إضافة منتج إلى سلة التسوق مع اللون المختار
+        function addToCart(productId) {
+            const product = productsData.find(p => p.id === productId);
+            if (!product) return;
+
+            const activeVariant = product.variants[product.selectedColorIndex || 0];
+            const cartItemKey = `${product.id}-${activeVariant.colorName}`;
+
+            const existingItem = cart.find(item => item.cartKey === cartItemKey);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    ...product,
+                    cartKey: cartItemKey,
+                    chosenColor: activeVariant.colorName,
+                    chosenImage: activeVariant.image,
+                    quantity: 1
+                });
+            }
+
+            updateCartUI();
+            showToast(`تمت إضافة "${product.name}" (${activeVariant.colorName}) إلى السلة`);
+            
+            // حركة نبض لعداد السلة
+            const badge = document.getElementById('cart-badge');
+            badge.classList.add('scale-125');
+            setTimeout(() => badge.classList.remove('scale-125'), 250);
+        }
+
+        // تعديل كمية منتج في السلة
+        function updateQuantity(cartKey, delta) {
+            const itemIndex = cart.findIndex(item => item.cartKey === cartKey);
+            if (itemIndex === -1) return;
+
+            cart[itemIndex].quantity += delta;
+            if (cart[itemIndex].quantity <= 0) {
+                cart.splice(itemIndex, 1);
+            }
+            updateCartUI();
+        }
+
+        // حذف منتج نهائياً من السلة
+        function removeFromCart(cartKey) {
+            cart = cart.filter(item => item.cartKey !== cartKey);
+            updateCartUI();
+        }
+
+        // تحديث واجهة سلة التسوق والعداد
+        function updateCartUI() {
+            const badge = document.getElementById('cart-badge');
+            const itemsContainer = document.getElementById('cart-items-container');
+            const countText = document.getElementById('cart-items-count-text');
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const totalEl = document.getElementById('cart-total');
+            const cartFooter = document.getElementById('cart-footer');
+
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            badge.textContent = totalItems;
+            countText.textContent = `${totalItems} ${totalItems === 1 ? 'منتج' : 'منتجات'} في السلة`;
+            subtotalEl.textContent = `${totalPrice.toLocaleString()} د.ج`;
+            totalEl.textContent = `${totalPrice.toLocaleString()} د.ج`;
+
+            if (cart.length === 0) {
+                cartFooter.classList.add('hidden');
+                itemsContainer.innerHTML = `
+                    <div class="h-full flex flex-col items-center justify-center text-center py-12 space-y-4">
+                        <div class="w-20 h-20 rounded-full bg-brand-50 text-brand-400 flex items-center justify-center">
+                            <i data-lucide="shopping-bag" class="w-10 h-10"></i>
+                        </div>
+                        <h4 class="text-lg font-extrabold text-slate-800">سلة التسوق فارغة حالياً</h4>
+                        <p class="text-sm text-slate-500 max-w-xs">تصفح تشكيلتنا المميزة من الحواسيب واختر اللون المناسب لك.</p>
+                        <button onclick="toggleCartModal()" class="px-6 py-2.5 rounded-xl bg-brand-500 text-white font-bold text-sm hover:bg-brand-600 transition-colors">
+                            ابدأ التسوق الآن
+                        </button>
+                    </div>
+                `;
+            } else {
+                cartFooter.classList.remove('hidden');
+                itemsContainer.innerHTML = cart.map(item => `
+                    <div class="flex items-center gap-4 p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
+                        <img src="${item.chosenImage}" alt="${item.name}" class="w-16 h-16 rounded-xl object-cover bg-white shrink-0">
+                        <div class="flex-1 min-w-0">
+                            <h4 class="text-sm font-extrabold text-slate-900 truncate" dir="ltr">${item.name}</h4>
+                            <p class="text-[11px] font-semibold text-slate-500 truncate">${item.chosenColor}</p>
+                            <p class="text-sm font-bold text-brand-600 mt-0.5">${item.price.toLocaleString()} د.ج</p>
+                            
+                            <div class="flex items-center gap-2 mt-2">
+                                <button onclick="updateQuantity('${item.cartKey}', -1)" class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-brand-50 hover:text-brand-600 font-bold">-</button>
+                                <span class="text-xs font-extrabold w-6 text-center">${item.quantity}</span>
+                                <button onclick="updateQuantity('${item.cartKey}', 1)" class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-brand-50 hover:text-brand-600 font-bold">+</button>
+                            </div>
+                        </div>
+                        <button onclick="removeFromCart('${item.cartKey}')" class="p-2 text-slate-400 hover:text-rose-500 transition-colors" aria-label="حذف">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+
+            lucide.createIcons();
+        }
+
+        // فتح وإغلاق نافذة سلة التسوق
+        function toggleCartModal() {
+            const modal = document.getElementById('cart-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        // فتح وإغلاق قائمة الهواتف
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // معالجة إتمام الطلب
+        function handleCheckout(event) {
+            event.preventDefault();
+            const name = document.getElementById('customer-name').value.trim();
+            const paymentMethod = document.getElementById('payment-method-select').value;
+            
+            if (!name) return;
+
+            // تفريغ السلة وإغلاق النافذة وإظهار رسالة نجاح
+            cart = [];
+            updateCartUI();
+            toggleCartModal();
+            document.getElementById('checkout-form').reset();
+            
+            showToast(`شكراً يا ${name}! تم تسجيل طلبك (${paymentMethod}) وسنتصل بك من الرقم +213775031508.`);
+        }
+
+        // إظهار الإشعار المنبثق
+        let toastTimeout;
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            
+            toastMsg.textContent = message;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
